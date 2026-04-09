@@ -1,0 +1,5 @@
+venv
+.env
+node_modules/
+my-custom-studio-poc/node_modules/
+my-custom-studio-poc/.env.local 

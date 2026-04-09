@@ -1,0 +1,245 @@
+/* ── Reset & base ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --primary: #6366f1;
+  --primary-hover: #818cf8;
+  --accent: #f59e0b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --cell-empty: #1a1a2e;
+  --radius: 12px;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Layout ────────────────────────────────────────────────────────────── */
+.game-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  gap: 1.25rem;
+}
+
+.game-header {
+  text-align: center;
+}
+
+.game-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.game-header p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ── Tetris layout ─────────────────────────────────────────────────────── */
+.tetris-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* ── Board ──────────────────────────────────────────────────────────────── */
+.tetris-board {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0d0d1a;
+}
+
+.tetris-row {
+  display: flex;
+}
+
+.tetris-cell {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ── Side panel ────────────────────────────────────────────────────────── */
+.tetris-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 120px;
+}
+
+.side-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.side-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.side-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ── Next piece preview ────────────────────────────────────────────────── */
+.preview-grid {
+  margin-top: 0.25rem;
+}
+
+.preview-cell {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Overlay ───────────────────────────────────────────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+.overlay-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+}
+
+.overlay-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.overlay-card p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────── */
+.btn {
+  padding: 0.6rem 1.3rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+}
+
+/* ── Mobile controls ───────────────────────────────────────────────────── */
+.mobile-controls {
+  display: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Auth bar ──────────────────────────────────────────────────────────── */
+.auth-bar {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.auth-bar .user-name {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-bar .btn {
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .tetris-cell {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tetris-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tetris-side {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-width: unset;
+  }
+
+  .mobile-controls {
+    display: flex;
+  }
+
+  .game-header p {
+    display: none;
+  }
+}

@@ -1,0 +1,6 @@
+venv
+.env
+node_modules/
+.env.local 
+.next/
+.baseline-dev-enablement/
